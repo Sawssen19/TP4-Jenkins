@@ -11,7 +11,7 @@ services:
   spring-boot-app:
     image: Sawssen19/springboot-app:1.0.0
     ports:
-      - "8092:8091" # Backend service port mapping
+      - "8081:8091" # Backend service port mapping
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/demo
       SPRING_DATASOURCE_USERNAME: root
