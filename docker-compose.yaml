@@ -13,7 +13,7 @@ services:
     ports:
       - "8091:8091" # Backend service port mapping
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/demo
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/demo
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
       SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
