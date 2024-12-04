@@ -2,6 +2,7 @@ pipeline {
   agent any
   tools {
     maven 'maven'
+    nodejs 'nodejs' // Add NodeJS tool
   }
   stages {
     stage("Clean up") {
@@ -19,10 +20,9 @@ pipeline {
     stage("Generate frontend image") {
       steps {
         dir("TP4-Jenkins/angular-app") {
-          // Use npm commands for Angular
           sh "npm install"
           sh "npm run build"
-          sh "docker build -t angular-app ."
+          sh "docker build -t Sawssen19/angular-app:1.0.0 ."
         }
       }
     }
@@ -30,9 +30,8 @@ pipeline {
     stage("Generate backend image") {
       steps {
         dir("TP4-Jenkins/springboot/app") {
-          // Maven commands for Spring Boot
           sh "mvn clean install"
-          sh "docker build -t springboot-app ."
+          sh "docker build -t Sawssen19/springboot-app:1.0.0 ."
         }
       }
     }
