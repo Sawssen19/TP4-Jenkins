@@ -1,26 +1,26 @@
+version: '3.8'
 services:
 
   # Angular Application
   angular-app:
     image: Sawssen19/angular-app:1.0.0
     ports:
-      - "0.0.0.0:4200:80"
+      - "4200:80" # Mapping external port 4200 to internal port 80 (default Nginx)
 
   # Spring Boot Application
   spring-boot-app:
     image: Sawssen19/springboot-app:1.0.0
     ports:
-      - "0.0.0.0:8091:8091"    
-
+      - "8091:8091" # Backend service port mapping
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://mysql:3306/demo
-      - SPRING_DATASOURCE_USERNAME=root
-      - SPRING_DATASOURCE_PASSWORD=root
-      - SPRING_DATASOURCE_DRIVER_CLASS_NAME=com.mysql.cj.jdbc.Driver
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - SPRING_MVC_CORS_MAPPING=/**
-      - SPRING_MVC_CORS_ALLOWED_METHODS=GET,POST,PUT,DELETE
-      - SPRING_MVC_CORS_ALLOWED_HEADERS=*
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/demo
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_MVC_CORS_MAPPING: /**
+      SPRING_MVC_CORS_ALLOWED_METHODS: GET,POST,PUT,DELETE
+      SPRING_MVC_CORS_ALLOWED_HEADERS: '*'
     depends_on:
       - mysql
 
@@ -30,13 +30,13 @@ services:
     restart: always
     environment:
       MYSQL_DATABASE: 'demo'
-      MYSQL_ROOT_USERNAME: 'root'
+      MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:  
-      - "0.0.0.0:3306:3306"
+      - "3306:3306" # Exposing MySQL for external connections (use cautiously in production)
     volumes:
       - demo:/var/lib/mysql
 
-# Define volumes
+# Define named volumes
 volumes:
   demo:
