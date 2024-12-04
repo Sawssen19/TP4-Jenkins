@@ -33,7 +33,7 @@ services:
       MYSQL_ROOT_USER: 'root'
       MYSQL_ROOT_PASSWORD: 'root'
     ports:  
-      - "3306:3306" # Exposing MySQL for external connections (use cautiously in production)
+      - "3307:3306" # Exposing MySQL for external connections (use cautiously in production)
     volumes:
       - demo:/var/lib/mysql
 
